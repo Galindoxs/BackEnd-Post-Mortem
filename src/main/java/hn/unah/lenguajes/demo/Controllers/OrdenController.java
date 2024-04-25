@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hn.unah.lenguajes.demo.Entities.Orden;
 import hn.unah.lenguajes.demo.Services.Impl.OrdenServiceImpl;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -49,6 +50,13 @@ public class OrdenController {
          return ResponseEntity.ok(ordenes);
     }
     
+    @GetMapping("/orden/idordenes")
+    public ResponseEntity<?> mostrarIdOrdenes(@RequestBody long idCliente) {
+         List<Long> ordenes = this.ordenServiceImpl.mostrarOrdenesIdOrdenes(idCliente);
+         
+         return ResponseEntity.ok(ordenes);
+    }
+
     @DeleteMapping("/orden/eliminar")
     public ResponseEntity<?> eliminarOrden(@RequestParam long idorden) {
         this.ordenServiceImpl.eliminaOrden(idorden);

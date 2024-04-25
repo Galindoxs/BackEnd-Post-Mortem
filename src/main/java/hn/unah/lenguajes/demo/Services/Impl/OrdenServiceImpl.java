@@ -95,8 +95,26 @@ public class OrdenServiceImpl implements OrdenService{
     }
 
     @Override
+    public List<Long> mostrarOrdenesIdOrdenes(long idCliente) {
+      Cliente cliente = this.clienteRepository.findById(idCliente).get();
+      List<Orden> ordenes = (List<Orden>) this.ordenRepository.findByCliente(cliente);
+      List<Long> filtro = new ArrayList<>();
+      
+      for (Orden orden : ordenes) {
+
+        if(orden.getEstado() == false){
+          filtro.add(orden.getIdorden());
+        }
+      }
+      
+      return filtro;
+    }
+
+    @Override
     public void eliminaOrden(long idorden) {
        this.ordenRepository.deleteById(idorden);
     }
+
+    
     
 }

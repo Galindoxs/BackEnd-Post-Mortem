@@ -2,6 +2,8 @@ package hn.unah.lenguajes.demo.Entities;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,6 +37,7 @@ public class Orden {
 
     private Boolean estado;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "idfactura", columnDefinition = "int")
     private Factura factura;

@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hn.unah.lenguajes.demo.Entities.Comida;
 import hn.unah.lenguajes.demo.Services.Impl.ComidaServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -48,6 +49,7 @@ public class ComidaController {
         return this.comidaServiceImpl.mostrarComida();
     }
     
+    @Operation(summary = "Agregar ingredientes a una comida")
     @PutMapping("/comida/{idcomida}/producto")
     public ResponseEntity<?> agregarIngredientes(@PathVariable long idcomida, @RequestBody List<Long> productos) {
        

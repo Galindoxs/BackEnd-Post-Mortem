@@ -3,6 +3,9 @@ package hn.unah.lenguajes.demo.Entities;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,6 +31,7 @@ public class Factura {
 
     private String estado;
 
-    @OneToMany(mappedBy = "factura")
+    @JsonManagedReference
+    @OneToMany(mappedBy = "factura", cascade = CascadeType.ALL)
     private List<Orden> orden;
 }

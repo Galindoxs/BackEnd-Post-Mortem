@@ -14,6 +14,8 @@ public interface OrdenService {
 
     public List<Orden> mostrarOrdenes(long idCliente);
 
+     public List<Long> mostrarOrdenesIdOrdenes(long idCliente);
+
     public void eliminaOrden(long idorden);
 
 }
