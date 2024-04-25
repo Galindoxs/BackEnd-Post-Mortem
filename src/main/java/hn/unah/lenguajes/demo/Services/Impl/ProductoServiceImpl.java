@@ -1,5 +1,7 @@
 package hn.unah.lenguajes.demo.Services.Impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,13 @@ public class ProductoServiceImpl implements ProductoService{
 
     @Override
     public Producto crearProducto(Producto producto) {
-        return this.productoRepository.save(producto);
+        if(producto.getCategoria().equals("Alcochol")){
+            Producto productoNuevo = producto;
+            productoNuevo.setPrecio(productoNuevo.getPrecio()+(productoNuevo.getPrecio()*0.18));
+            return this.productoRepository.save(productoNuevo);
+        }else{
+            return this.productoRepository.save(producto);
+        }
     }
 
     @Override
@@ -25,8 +33,12 @@ public class ProductoServiceImpl implements ProductoService{
 
     @Override
     public void RevisarProducto(long idproducto) {
-    
 
+    }
+
+    @Override
+    public List<Producto> mostrarProducto() {
+        return (List<Producto>)this.productoRepository.findAll();
     }
     
 }

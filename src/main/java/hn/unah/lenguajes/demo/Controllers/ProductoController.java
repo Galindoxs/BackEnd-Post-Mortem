@@ -6,7 +6,11 @@ import hn.unah.lenguajes.demo.Entities.Producto;
 import hn.unah.lenguajes.demo.Services.Impl.ProductoServiceImpl;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,5 +36,11 @@ public class ProductoController {
         return this.productoServiceImpl.eliminaProducto(nombre);
     }
     
+    @GetMapping("/producto/mostrar")
+    public ResponseEntity<?> mostrarProducto() {
+         List<Producto> productos = (List<Producto>)this.productoServiceImpl.mostrarProducto();
+
+         return ResponseEntity.ok(productos);
+    }
     
 }
